@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <style>
+        input[type="submit"]
+        {
+            background-color: rgba(0, 0, 0, 0.6);
+            font-weight: 700;
+            width: 25%;
+            color: white;
+        }
+        input[type="text"]
+        {
+            width: 45%;
+            text-align: center;
+        }
+        tr
+        {
+            text-align: center;
+        }
+        #heading
+        {
+            font-size: 10vh;
+            color: rgb(255, 255, 255);
+            
+        }
+        #div1
+        {
+           width: 100%;
+        }
+        h4
+        {
+            text-align: center;
+            font-weight: 1000;
+            background-color: rgb(29, 31, 109);
+        }
+        tr:hover
+        {
+            background-color: rgb(0, 0, 0);
+        }
+        h3
+        {
+            text-align: center;
+        }
+        body
+        {
+            color: white;
+            background-image:url('https://images.hdqwalls.com/download/retro-80s-ride-wg-2560x1440.jpg');
+        }
+        a
+        {
+            color: white;
+        }
+        th
+        {
+            background-color: black;
+        }
+        h2{
+                animation-duration: 6s;
+                animation-name: slidein;
+                animation-iteration-count: infinite;
+                animation-direction:normal;
+                text-align: center;
+        }
+        @keyframes slidein {
+            from {
+                    margin-left: 100%;
+                    width: 300%;
+                    }
+
+                to {
+                    margin-left: 0%;
+                    width: 100%;
+                    }
+            }
+            #zoom:hover {
+            transform: scale(1.6);
+            }
+            #divbody
+            {
+                background-color: rgba(0, 0, 0, 0.822);
+            }
+
+    </style>
+    
+    
+</head>
+
+<body>
+<div id="photo">
+    <center>
+        <div id="div0">
+        <p id="heading">Movie Recommender!!!</p>
+        <form id="form1" method="POST" action="/send_data">
+            <div class="form-group">
+                <input type="text" name="pay" placeholder="Enter Movie Name" autofocus>
+            </div>
+            <input type="submit" value="Click Here" >
+        </form>
+        <br>
+    </center>
+</div>
+<h2 style=" font-family: 'Times New Roman', Times, serif;color: white;">Other movies you might be interested in</h2>
+    <br>
+    <div id="divbody">
+        <div id="div1">
+        <table  class="table">
+            <tr>
+                {% for i in range(movies|length) %}
+                {% if i==0 %}
+                <th>MOVIES</th>
+                <th>ABOUT</th>
+                <th>GENRES</th>
+                <th>DIRECTOR</th>
+                <th>RATING</th>
+            </tr>
+            {% endif %}
+            <tr>
+                <td style="text-align:left;"><h5>{{movies[i]}}</h5></td>
+                <td><h5><a href="{{homepages[i]}}" title="Click here to Know more about movie">Click Here</a></h5></td>
+                <td><h5>{{genres[i]}}</h5></td>
+                <td><h5>{{directors[i]}}</h5></td>
+                <td><h5 id="zoom">{{vote_averages[i]}}</h5></td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+       </div>
+    
+</body>
+
+</html>
